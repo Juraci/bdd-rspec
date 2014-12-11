@@ -18,9 +18,6 @@ class Calc
     present(final_value)
   end
 
-  def sum(final_value)
-  end
-
   def type(digit)
     @screen << digit
   end
