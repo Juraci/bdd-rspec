@@ -1,4 +1,3 @@
-require 'hello'
 require 'calc'
 require 'pry'
 
