@@ -1,27 +1,27 @@
 require 'spec_helper'
 
-describe 'Calc' do
+describe 'Screen' do
   before :each do
-     @calc = Calc.new
+     @screen = Calc::Screen.new
   end
 
   describe '#screen' do
     it 'starts with 0' do
-      expect(@calc.screen).to eq(0)
+      expect(@screen.screen).to eq(0)
     end
 
     context 'when typing a digit' do
       it 'should return the typed digit' do
-        @calc.type(2)
-        expect(@calc.screen).to eq(2)
+        @screen.type(2)
+        expect(@screen.screen).to eq(2)
       end
     end
 
     context 'when typing multiple digits' do
       it 'should concatenate the digits' do
-        @calc.type(2)
-        @calc.type(3)
-        expect(@calc.screen).to eq(23)
+        @screen.type(2)
+        @screen.type(3)
+        expect(@screen.screen).to eq(23)
       end
     end
   end
@@ -29,12 +29,12 @@ describe 'Calc' do
   describe '#sum' do
     context 'when typing 1 + 23' do
       it 'returns 24' do
-        @calc.type(1)
-        @calc.type('+')
-        @calc.type(2)
-        @calc.type(3)
-        @calc.type('=')
-        expect(@calc.screen).to eq(24)
+        @screen.type(1)
+        @screen.type('+')
+        @screen.type(2)
+        @screen.type(3)
+        @screen.type('=')
+        expect(@screen.screen).to eq(24)
       end
     end
 
