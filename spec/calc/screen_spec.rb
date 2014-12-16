@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe 'Screen' do
   before :each do
-     @screen = Calc::Screen.new
+    @fake_sum  = double('fake_sum')
+    allow(@fake_sum).to receive(:exec).and_return("24")
+    @screen = Calc::Screen.new(@fake_sum)
   end
 
   describe '#screen' do
@@ -26,65 +28,19 @@ describe 'Screen' do
     end
   end
 
-  describe '#sum' do
-    context 'when typing 1 + 23' do
-      it 'returns 24' do
+  describe '#type' do
+    context 'when typing addition operations' do
+      it 'delegates the addition to Sum' do
         @screen.type(1)
         @screen.type('+')
         @screen.type(2)
         @screen.type(3)
         @screen.type('=')
-        expect(@screen.screen).to eq(24)
+
+        expect(@fake_sum).to receive(:exec).with("01+23")
+
+        @screen.screen
       end
     end
-
-    context 'when typing 1 + -1' do
-      it 'returns 0'
-    end
-
-    context 'when typing 1 + -1 + 15' do
-      it 'returns 15'
-    end
-
-    context 'when typing 1 + -1 + -15' do
-      it 'returns -15'
-    end
-
-    context 'when the result causes an integer overflow' do
-      it 'raises an exception'
-    end
-
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end

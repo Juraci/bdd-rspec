@@ -3,15 +3,16 @@ module Calc
 
     EQUAL_SYMBOL = '='
 
-    def initialize
+    def initialize(sum)
       @screen = [0]
+      @sum = sum
     end
 
     def screen
       final_value = ""
       @screen.each  do |current_digit|
         if current_digit == EQUAL_SYMBOL
-          final_value = Calc::Sum.new.exec(final_value)
+          final_value = @sum.exec(final_value)
         else
           final_value += current_digit.to_s
         end
